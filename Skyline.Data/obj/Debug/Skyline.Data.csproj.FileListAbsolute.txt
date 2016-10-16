@@ -1,0 +1,10 @@
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\Skyline.Data.dll.config
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\Skyline.Data.dll
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\Skyline.Data.pdb
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\EntityFramework.dll
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\EntityFramework.xml
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\obj\Debug\Skyline.Data.dll
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\obj\Debug\Skyline.Data.pdb
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Data\obj\Debug\Skyline.Data.csprojResolveAssemblyReference.cache
