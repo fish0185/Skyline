@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyline.Services", "Skyline
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyline.Test", "Skyline.Test\Skyline.Test.csproj", "{EDDDB65F-6B64-427F-9DBA-A05807398713}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyline.Api.Application", "Skyline.Api.Application\Skyline.Api.Application.csproj", "{1B62549E-45FD-460F-8BD5-04EEA526062E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EDDDB65F-6B64-427F-9DBA-A05807398713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDDDB65F-6B64-427F-9DBA-A05807398713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDDDB65F-6B64-427F-9DBA-A05807398713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B62549E-45FD-460F-8BD5-04EEA526062E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B62549E-45FD-460F-8BD5-04EEA526062E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B62549E-45FD-460F-8BD5-04EEA526062E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B62549E-45FD-460F-8BD5-04EEA526062E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
