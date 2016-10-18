@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Identity\SkylineAuthProvider.cs" />
     <Compile Include="Infrastructure\Identity\SkylineIdentityDbContext.cs" />
     <Compile Include="Infrastructure\Identity\SkylineIdentityDbInitializer.cs" />
     <Compile Include="Infrastructure\Identity\SkylineRole.cs" />

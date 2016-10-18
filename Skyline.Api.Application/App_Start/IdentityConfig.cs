@@ -10,6 +10,7 @@ namespace Skyline.Api.Application
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
 
     using Owin;
 
@@ -22,9 +23,16 @@ namespace Skyline.Api.Application
             app.CreatePerOwinContext<SkylineIdentityDbContext>(SkylineIdentityDbContext.Create);
             app.CreatePerOwinContext<SkylineUserManager>(SkylineUserManager.Create);
             app.CreatePerOwinContext<SkylineRoleManager>(SkylineRoleManager.Create);
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+            //});
+
+            app.UseOAuthBearerTokens(new OAuthAuthorizationServerOptions
             {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+                Provider = new SkylineAuthProvider(),
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/Authenticate")
             });
         }
     }
