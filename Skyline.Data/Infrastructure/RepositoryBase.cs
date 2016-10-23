@@ -22,15 +22,12 @@ namespace Skyline.Data.Infrastructure
             get; set;
         }
 
-        protected SkylineDbContext DbContext
-        {
-            get { return this._dataContext ?? (this._dataContext = DbFactory.Init()); }
-        }
+        private readonly SkylineDbContext _dbContext;
 
-        protected RepositoryBase(IDbFactory dbFactory)
+        protected RepositoryBase(SkylineDbContext dbContext)
         {
-            DbFactory = dbFactory;
-            this.dbSet = DbContext.Set<T>();
+            _dbContext = dbContext;
+            this.dbSet = _dbContext.Set<T>();
         }
 
         public virtual void Add(T entity)

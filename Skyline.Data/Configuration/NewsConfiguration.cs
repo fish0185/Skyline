@@ -15,6 +15,7 @@ namespace Skyline.Data.Configuration
         {
             ToTable("News");
             Property(news => news.NewsTitle).IsRequired().HasMaxLength(256);
+            Ignore(news => news.IsDirty);
         }
     }
 }

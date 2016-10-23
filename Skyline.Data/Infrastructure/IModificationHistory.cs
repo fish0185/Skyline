@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Skyline.Data.Infrastructure
 {
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Net.Configuration;
 
     public interface IModificationHistory

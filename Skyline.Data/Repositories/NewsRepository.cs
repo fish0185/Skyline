@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Skyline.Data.Repositories
 {
+    using Skyline.Data.Concrete;
     using Skyline.Data.Entities;
     using Skyline.Data.Infrastructure;
     public class NewsRepository : RepositoryBase<News>, INewsRepository
     {
-        public NewsRepository(IDbFactory dbFactory) : base(dbFactory) { }
+        public NewsRepository(SkylineDbContext dbContext) : base(dbContext) { }
     }
 }

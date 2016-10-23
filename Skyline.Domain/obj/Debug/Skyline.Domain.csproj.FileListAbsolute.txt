@@ -1,4 +1,5 @@
 C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Domain\bin\Debug\Skyline.Domain.dll
 C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Domain\bin\Debug\Skyline.Domain.pdb
+C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Domain\obj\Debug\Skyline.Domain.csprojResolveAssemblyReference.cache
 C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Domain\obj\Debug\Skyline.Domain.dll
 C:\Users\gary\documents\visual studio 2015\Projects\Skyline\Skyline.Domain\obj\Debug\Skyline.Domain.pdb

@@ -10,23 +10,17 @@ namespace Skyline.Data.Infrastructure
 
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbFactory dbFactory;
 
-        private SkylineDbContext dbContext;
+        private SkylineDbContext _dbContext;
 
-        public UnitOfWork(IDbFactory dbFactory)
+        public UnitOfWork(SkylineDbContext dbContext)
         {
-            this.dbFactory = dbFactory;
-        }
-
-        public SkylineDbContext DbContext
-        {
-            get { return this.dbContext??(this.dbContext = this.dbFactory.Init());}
+            this._dbContext = dbContext;
         }
 
         public int Commit()
         {
-            return DbContext.SaveChanges();
+            return _dbContext.SaveChanges();
         }
     }
 }

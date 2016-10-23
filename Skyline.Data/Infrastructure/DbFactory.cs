@@ -9,18 +9,23 @@ namespace Skyline.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        private SkylineDbContext dbContext;
+        private SkylineDbContext _dbContext;
+
+        public DbFactory(SkylineDbContext dbContext)
+        {
+            this._dbContext = dbContext;
+        }
 
         public SkylineDbContext Init()
         {
-            return this.dbContext ?? (this.dbContext = new SkylineDbContext());
+            return this._dbContext ?? (this._dbContext = new SkylineDbContext());
         }
 
         protected override void DisposeCore()
         {
-            if (this.dbContext != null)
+            if (this._dbContext != null)
             {
-                this.dbContext.Dispose();
+                this._dbContext.Dispose();
             }
         }
     }

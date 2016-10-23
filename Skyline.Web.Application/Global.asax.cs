@@ -16,8 +16,7 @@ namespace Skyline.Web.Application
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // Init database
-            System.Data.Entity.Database.SetInitializer(new SkylineSeedData());
+            
 
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();

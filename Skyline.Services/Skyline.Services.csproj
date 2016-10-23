@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\INewsService.cs" />
+    <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Concrete\NewsService.cs" />
+    <Compile Include="Concrete\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,24 +15,45 @@ namespace Skyline.Api.Application.Controllers
     using Microsoft.Owin.Security;
 
     using Skyline.Api.Application.Infrastructure.Identity;
-    using Skyline.Domain;
+    using Skyline.Data.Entities;
+    using Skyline.Data.Infrastructure;
     using Skyline.Services.Abstract;
 
+    using News = Skyline.Domain.News;
 
     public class NewsController : ApiController
     {
 
         private readonly INewsService _newsService;
+        private readonly SkylineUserManager _manager;
+        private readonly SkylineRoleManager _roleManager;
+        private readonly IAuthenticationManager _authManager;
 
-        public NewsController(INewsService newsService)
+        public NewsController(
+            INewsService newsService,
+            SkylineUserManager manager,
+            SkylineRoleManager roleManager,
+            IAuthenticationManager authManager)
         {
             this._newsService = newsService;
+            this._manager = manager;
+            this._roleManager = roleManager;
+            this._authManager = authManager;
         }
 
         public IEnumerable<News> GetNewses()
         {
             var xxx = _newsService.GetNews();
+            var mans = _manager.FindByName("Admin");
+            var roles = this._roleManager.Roles;
             return new List<News>();
+        }
+
+        [Authorize]
+        public void Delete()
+        {
+            Console.WriteLine("Test");
+            _authManager.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ExternalBearer);
         }
 
         public async Task Post()
