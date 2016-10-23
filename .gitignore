@@ -1,13 +1,13 @@
-/Skyline.Data/bin
-/Skyline.Api.Application/bin
-/Skyline.Domain/bin
-/Skyline.Services/bin
-/Skyline.Test/bin
-/Skyline.Web.Application/bin
-/Skyline.Data/obj
-/Skyline.Api.Application/obj
-/Skyline.Domain/obj
-/Skyline.Services/obj
-/Skyline.Test/obj
-/Skyline.Web.Application/obj
+Skyline.Data/bin
+Skyline.Api.Application/bin
+Skyline.Domain/bin
+Skyline.Services/bin
+Skyline.Test/bin
+Skyline.Web.Application/bin
+Skyline.Data/obj
+Skyline.Api.Application/obj
+Skyline.Domain/obj
+Skyline.Services/obj
+Skyline.Test/obj
+Skyline.Web.Application/obj
 
