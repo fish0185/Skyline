@@ -12,12 +12,18 @@ namespace Skyline.Data.Infrastructure
 
     using Skyline.Data.Concrete;
     using Skyline.Data.Entities;
+    using Skyline.Data.Validators;
 
     public class SkylineUserManager : UserManager<SkylineUser>
     {
         public SkylineUserManager(IUserStore<SkylineUser> store)
             : base(store)
         {
+            this.UserValidator = new CustomUserValidator(this);
+            this.PasswordValidator = new CustomPasswordValidator
+                                         {
+                                             RequireDigit = true
+                                         };
         }
     }
 }

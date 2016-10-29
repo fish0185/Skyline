@@ -20,11 +20,8 @@ namespace Skyline.Data
     {
         protected override void Seed(SkylineDbContext context)
         {
-
-            SkylineUserManager userMgr =
-new SkylineUserManager(new UserStore<SkylineUser>(context));
-            SkylineRoleManager roleMgr =
-            new SkylineRoleManager(new RoleStore<SkylineRole>(context));
+            SkylineUserManager userMgr = new SkylineUserManager(new UserStore<SkylineUser>(context));
+            SkylineRoleManager roleMgr = new SkylineRoleManager(new RoleStore<SkylineRole>(context));
             string roleName = "Administrators";
             string userName = "Admin";
             string password = "secret";
@@ -33,6 +30,7 @@ new SkylineUserManager(new UserStore<SkylineUser>(context));
             {
                 roleMgr.Create(new SkylineRole(roleName));
             }
+
             SkylineUser user = userMgr.FindByName(userName);
             if (user == null)
             {

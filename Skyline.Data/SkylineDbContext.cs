@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Skyline.Data.Concrete
 {
     using System.Collections.Specialized;
+    using System.Reflection;
 
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -28,7 +29,7 @@ namespace Skyline.Data.Concrete
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new NewsConfiguration());
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetAssembly(typeof(SkylineDbContext)));
             base.OnModelCreating(modelBuilder);
         }
 
