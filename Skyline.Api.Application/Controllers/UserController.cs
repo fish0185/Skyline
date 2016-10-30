@@ -26,6 +26,30 @@
             _roleManager = roleManager;
         }
 
+        [Authorize(Roles = "Administrator")]
+        public async Task<IHttpActionResult> Delete(string id)
+        {
+            if (id != null)
+            {
+                var user = await this._userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    var result = await this._userManager.DeleteAsync(user);
+                    if (result.Succeeded)
+                    {
+                        return this.Ok(this.ToUser(user));
+                    }
+
+                    AddErrorsToModelState(result);
+                    return this.BadRequest(ModelState);
+                }
+
+                return this.BadRequest("User not exist.");
+            }
+
+            return this.BadRequest("Invalid user id.");
+        }
+
         [Authorize]
         [HttpPut]
         public async Task<IHttpActionResult> UpdateProfile(User user)
