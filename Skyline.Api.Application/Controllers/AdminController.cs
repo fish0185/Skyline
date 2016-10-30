@@ -9,5 +9,16 @@ namespace Skyline.Api.Application.Controllers
 {
     public class AdminController : ApiController
     {
+        [Authorize]
+        public string Get()
+        {
+            return "Admin";
+        }
+
+        [Authorize(Roles = "Administrator")]
+        public string Delete()
+        {
+            return "Deleted";
+        }
     }
 }

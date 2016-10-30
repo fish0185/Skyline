@@ -12,7 +12,7 @@ namespace Skyline.Domain
     public class User
     {
         [Required]
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         public string Password { get; set; }
@@ -25,5 +25,15 @@ namespace Skyline.Domain
         [EmailAddress]
         public string Email { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime? DOB { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
     }
 }

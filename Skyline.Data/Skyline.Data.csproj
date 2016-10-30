@@ -100,19 +100,6 @@
     <Compile Include="Infrastructure\SkylineRoleManager.cs" />
     <Compile Include="Infrastructure\SkylineUserManager.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201610231034179_InitialCreate.cs" />
-    <Compile Include="Migrations\201610231034179_InitialCreate.Designer.cs">
-      <DependentUpon>201610231034179_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610291157088_initial.cs" />
-    <Compile Include="Migrations\201610291157088_initial.Designer.cs">
-      <DependentUpon>201610291157088_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610291224374_DOBChange.cs" />
-    <Compile Include="Migrations\201610291224374_DOBChange.Designer.cs">
-      <DependentUpon>201610291224374_DOBChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
     <Compile Include="Repositories\NewsRepository.cs" />
     <Compile Include="SkylineDbContext.cs" />
@@ -125,17 +112,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610231034179_InitialCreate.resx">
-      <DependentUpon>201610231034179_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610291157088_initial.resx">
-      <DependentUpon>201610291157088_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610291224374_DOBChange.resx">
-      <DependentUpon>201610291224374_DOBChange.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

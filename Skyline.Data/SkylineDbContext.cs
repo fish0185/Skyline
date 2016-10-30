@@ -25,6 +25,9 @@ namespace Skyline.Data.Concrete
         {
             // Init database
             System.Data.Entity.Database.SetInitializer(new SkylineSeedData());
+#if DEBUG
+            this.Database.Log = txt => System.Diagnostics.Debug.WriteLine(txt);
+#endif
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -14,7 +14,7 @@ namespace Skyline.Data.Configuration
     {
         public SkyUserConfiguration()
         {
-            Property(user => user.DOB).IsOptional();
+            Property(user => user.DOB).HasColumnType("datetime2").IsOptional();
             
         }
     }

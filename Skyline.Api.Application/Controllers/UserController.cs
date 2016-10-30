@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -25,20 +26,119 @@
             _roleManager = roleManager;
         }
 
+        [Authorize]
+        [HttpPut]
+        public async Task<IHttpActionResult> UpdateProfile(User user)
+        {
+            if (user != null)
+            {
+                if (user.UserName == this.User.Identity.Name)
+                {
+                    var dbUser = await this._userManager.FindByNameAsync(user.UserName);
+                    dbUser.DOB = user.DOB;
+                    dbUser.FirstName = user.FirstName;
+                    dbUser.MiddleName = user.MiddleName;
+                    dbUser.LastName = user.LastName;
+                    var result = await this._userManager.UpdateAsync(dbUser);
+                    if (result.Succeeded)
+                    {
+                        return this.Ok(ToUser(dbUser));
+                    }
+
+                    AddErrorsToModelState(result);
+                }
+                else
+                {
+                     ModelState.AddModelError("", "Only update yourself is allow"); 
+                }                            
+            }
+
+            return this.BadRequest(ModelState);
+        }
+
+        [Route("api/Users")]
+        public async Task<IHttpActionResult> GetAll()
+        {
+            var users = await this._userManager.Users.ToListAsync();
+            return this.Ok(users.Select(ToUser));
+        }
+
+        public async Task<IHttpActionResult> Get(int pageNum, int pageSize)
+        {
+            if (pageNum <= 0)
+            {
+                return this.BadRequest("Page Number must large then 0");
+            }
+
+            var users = await this._userManager.Users.OrderBy(user => user.UserName).Skip((pageNum - 1) * pageSize).Take(pageSize).ToListAsync();
+            var usersVm = users.Select(this.ToUser).ToList();
+            return this.Ok(usersVm);
+        }
+
+        private User ToUser(SkylineUser user)
+        {
+            return new User
+                       {
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        DOB = user.DOB,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        MiddleName = user.MiddleName
+                       };
+        }
+
+        private SkylineUser ToSkylineUser(User user)
+        {
+            return new SkylineUser
+                       {
+                           UserName = user.UserName,
+                           Email = user.Email,
+                           DOB = user.DOB,
+                           FirstName = user.FirstName,
+                           LastName = user.LastName,
+                           MiddleName = user.MiddleName
+                       };
+        }
+
+        public async Task<IHttpActionResult> Get(string id)
+        {
+            if (id != null)
+            {
+                var user = await this._userManager.FindByIdAsync(id);
+                if (user != null)
+                {
+                    User userVM = this.ToUser(user);
+                    return this.Ok(userVM);
+                }
+
+                return this.NotFound();
+            }
+
+            return this.BadRequest("User id must be supplied");
+        }
+
         public async Task<IHttpActionResult> Post(User newUser)
         {
             if (newUser != null)
             {
-                SkylineUser user = new SkylineUser
-                                       {
-                                           UserName = newUser.Name
-                                       };
+                SkylineUser user = ToSkylineUser(newUser);
                 var result = await this._userManager.CreateAsync(user, newUser.Password);
                 if (result.Succeeded)
                 {
-                    return this.Ok(newUser);
-                }
+                    var dbUser = await this._userManager.FindByNameAsync(newUser.UserName);
+                    if (dbUser != null)
+                    {
+                        var addRoleResult = await this._userManager.AddToRoleAsync(dbUser.Id, "User");
+                        if (addRoleResult.Succeeded)
+                        {
+                            return this.Ok(newUser);
+                        }
 
+                        AddErrorsToModelState(addRoleResult);                      
+                    }              
+                }
+                
                 AddErrorsToModelState(result);
             }
             else

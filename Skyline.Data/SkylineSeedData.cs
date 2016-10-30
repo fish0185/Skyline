@@ -8,6 +8,7 @@ namespace Skyline.Data
 {
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
+    using System.Linq.Expressions;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,34 +17,43 @@ namespace Skyline.Data
     using Skyline.Data.Entities;
     using Skyline.Data.Infrastructure;
 
-    public class SkylineSeedData : DropCreateDatabaseIfModelChanges<SkylineDbContext>
+    public class SkylineSeedData : CreateDatabaseIfNotExists<SkylineDbContext>
     {
         protected override void Seed(SkylineDbContext context)
         {
             SkylineUserManager userMgr = new SkylineUserManager(new UserStore<SkylineUser>(context));
             SkylineRoleManager roleMgr = new SkylineRoleManager(new RoleStore<SkylineRole>(context));
-            string roleName = "Administrators";
             string userName = "Admin";
             string password = "secret";
             string email = "admin@example.com";
-            if (!roleMgr.RoleExists(roleName))
+            string[] roles = { "Administrator", "User", "Editor" };
+            foreach (var role in roles)
             {
-                roleMgr.Create(new SkylineRole(roleName));
+                if (!roleMgr.RoleExists(role))
+                {
+                    roleMgr.Create(new SkylineRole(role));
+                }
             }
 
             SkylineUser user = userMgr.FindByName(userName);
             if (user == null)
             {
+                // use default validator
+                userMgr.UserValidator = new UserValidator<SkylineUser>(userMgr);
+                userMgr.PasswordValidator = new PasswordValidator();
                 userMgr.Create(new SkylineUser
                 {
                     UserName = userName,
-                    Email = email
+                    Email = email,
+                    FirstName = "Admin",
+                    LastName = "Yu",
+                    DOB = null
                 }, password);
                 user = userMgr.FindByName(userName);
             }
-            if (!userMgr.IsInRole(user.Id, roleName))
+            if (!userMgr.IsInRole(user.Id, "Administrator"))
             {
-                userMgr.AddToRole(user.Id, roleName);
+                userMgr.AddToRole(user.Id, "Administrator");
             }
 
             GetNews().ForEach(news=>context.News.Add(news));
